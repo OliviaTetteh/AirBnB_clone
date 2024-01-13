@@ -79,7 +79,7 @@ class TestBase(unittest.TestCase):
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.save()
-        msg = "save() missing 1 required positional argument: 'self'"
+        msg = "BaseModel.save() missing 1 required positional argument: 'self'"
         self.assertEqual(str(e.exception), msg)
 
     def test_save_excess_args(self):
@@ -87,14 +87,16 @@ class TestBase(unittest.TestCase):
         self.resetStorage()
         with self.assertRaises(TypeError) as e:
             BaseModel.save(self, 98)
-        msg = "save() takes 1 positional argument but 2 were given"
-        self.assertEqual(str(e.exception), msg)
+        self.assertEqual(str(e.exception), 'BaseModel.save() takes 1 positional argument but 2 were given')
 
     def test_str(self):
         """Test method for str representation"""
         b1 = BaseModel()
         string = f"[{type(b1).__name__}] ({b1.id}) {b1.__dict__}"
         self.assertEqual(b1.__str__(), string)
+
+    def resetStorage(self):
+        pass
 
 
 if __name__ == "__main__":

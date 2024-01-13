@@ -7,6 +7,7 @@ from models.engine.file_storage import FileStorage
 from models.place import Place
 from models import storage
 from datetime import datetime
+import time
 
 
 class TestPlace(unittest.TestCase):
@@ -63,6 +64,7 @@ class TestPlace(unittest.TestCase):
         """Test method for save"""
         p1 = Place()
         old_update = p1.updated_at
+        time.sleep(1)
         p1.save()
         self.assertNotEqual(p1.updated_at, old_update)
 

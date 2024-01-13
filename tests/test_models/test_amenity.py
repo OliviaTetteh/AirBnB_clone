@@ -7,6 +7,7 @@ from models import storage
 from datetime import datetime
 from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
+import time
 
 
 class TestAmenity(unittest.TestCase):
@@ -52,6 +53,7 @@ class TestAmenity(unittest.TestCase):
         """Test method for save"""
         a1 = Amenity()
         old_update = a1.updated_at
+        time.sleep(1)
         a1.save()
         self.assertNotEqual(a1.updated_at, old_update)
 
