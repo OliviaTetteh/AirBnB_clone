@@ -33,6 +33,8 @@ class TestConsole(unittest.TestCase):
     def test_simple(self):
         """Tests basic commands.
         """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help show")
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("quit")
